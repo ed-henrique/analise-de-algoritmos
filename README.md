@@ -1,1 +1,3 @@
-# analise-de-algoritmos
+# Gincana de Análise de Algoritmos
+
+- Cada pasta representa uma equipe
