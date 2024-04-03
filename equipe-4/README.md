@@ -12,7 +12,7 @@ Para executar este script, você precisará de:
 
 ## Como Executar
 
-1. Clone o repositório para sua máquina local ou baixe o arquivo `generate_numbers.py`.
+1. Clone o repositório para sua máquina local ou baixe o arquivo `script.py`.
 2. Abra um terminal ou prompt de comando.
 3. Navegue até o diretório onde o arquivo `generate_numbers.py` foi salvo.
 4. Execute o script usando o comando: `python generate_numbers.py`
