@@ -24,4 +24,4 @@ with open('D.txt', 'w') as file:
     for num in numeros_decrescente:
         file.write(f'{num}\n')
 
-print('Arquivos criados com sucesso!')
+print('Arquivos criados com sucesso')
