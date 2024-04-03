@@ -1,5 +1,7 @@
 # Equipe 6
 
+Para executar, é necessário estar no Linux ou em um ambiente WSL.
+
 ## Como usar o script?
 
 ```bash
