@@ -1,4 +1,4 @@
-Equipe: Jasson, Guilherme, Leonardo e João Lucas
+Equipe: Jasson, Marcos,  Guilherme, Leonardo e João Lucas
 
 # Gerador de Sequências Numéricas
 

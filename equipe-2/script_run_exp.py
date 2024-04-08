@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 from os import walk
 import os
 import os.path
@@ -29,13 +27,13 @@ Usage mode:
 3) all outputs are save in the file called execution_log.txt
 """
 
-BINARY_PROGRAM = ["merge", "quick", "shell"]
+BINARY_PROGRAM = ["merge","quick","shell"]
 INPUTS_FILE = "inputs"
 TIMES_RUN = 13
 PATH_FILES_INPUT_LIST = []
 
 def list_files_input():    
-    for (dirpath, _, filenames) in walk(INPUTS_FILE):
+    for (dirpath, dirnames, filenames) in walk(INPUTS_FILE):
         for file in filenames:
             full_path = os.path.abspath(dirpath) + "/" + file
             PATH_FILES_INPUT_LIST.append(full_path)   
@@ -55,7 +53,7 @@ def run_code():
             stdout_logger.error(f"Input file: {input} not found")            
         else:
             for binary in BINARY_PROGRAM:
-            cmd = shlex.split("./" + BINARY_PROGRAM + " " + input)
+                cmd = shlex.split("./" + BINARY_PROGRAM + " " + input)
             for count_time in range(TIMES_RUN):
                 stdout_logger.debug(f"Input file: {input} - Time {count_time}")            
                 file_logger.debug(f"Running input: {input} - Time {count_time}")
@@ -75,6 +73,8 @@ def run_code():
 
 
 def main():
+    logging.debug('Experiment script executed')
+    logging.debug('Listing input files to the program')
     list_files_input()
     run_code()
 
