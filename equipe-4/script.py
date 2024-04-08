@@ -1,29 +1,30 @@
 import random
 
-# Gerar os número no intervalo
-numbers = list(range(1, 10001, 1000))
+def gerar_sequencias(tamanho):
+    # Gerar sequência ascendente
+    ascendente = list(range(1, tamanho + 1))
 
-# Crescente
-ascending_order = sorted(numbers)
+    # Gerar sequência descendente
+    descendente = list(range(tamanho, 0, -1))
 
-# Decrescente
-descending_order = sorted(numbers, reverse=True)
+    # Gerar sequência aleatória
+    aleatoria = random.sample(range(1, tamanho + 1), tamanho)
 
-# Aleatorio
-random_order = numbers.copy()
-random.shuffle(random_order)
+    # Escrever as sequências nos arquivos
+    with open('ascendente.txt', 'w') as file:
+        for number in ascendente:
+            file.write(str(number) + '\n')
 
-# Escrever os numeros no arquivo
-with open('ascending_order.txt', 'w') as file:
-    for number in ascending_order:
-        file.write(f"{number}\n")
+    with open('descendente.txt', 'w') as file:
+        for number in descendente:
+            file.write(str(number) + '\n')
 
-with open('descending_order.txt', 'w') as file:
-    for number in descending_order:
-        file.write(f"{number}\n")
+    with open('aleatoria.txt', 'w') as file:
+        for number in aleatoria:
+            file.write(str(number) + '\n')
 
-with open('random_order.txt', 'w') as file:
-    for number in random_order:
-        file.write(f"{number}\n")
+    print("Arquivos gerados com sucesso!")
 
-print("Files created successfully.")
+
+tamanho_da_sequencia = int(input("Digite o número para gerar as sequências: "))
+gerar_sequencias(tamanho_da_sequencia)
