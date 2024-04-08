@@ -40,39 +40,39 @@ int main(int argc, char* argv[]) {
     int num_numeros = 0;
     char nome_arquivo_saida[100];
     
-    // Abra o arquivo para leitura
+    
     char nome_do_arquivo[1024];
     sprintf(nome_do_arquivo, "%s.txt", argv[1]);
     arquivo = fopen(nome_do_arquivo, "r");
 
-    // Verifique se o arquivo foi aberto corretamente
+    
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         return 1;
     }
 
-    // Contar quantos números estão no arquivo
+    
     int num;
     while (fscanf(arquivo, "%d", &num) == 1) {
         num_numeros++;
     }
 
-    // Alocar memória para o array
+    
     array = (int*)malloc(num_numeros * sizeof(int));
     if (array == NULL) {
         printf("Erro ao alocar memória.\n");
         return 1;
     }
 
-    // Voltar ao início do arquivo
+    
     rewind(arquivo);
 
-    // Ler os números do arquivo e armazená-los no array
+    
     for (int i = 0; i < num_numeros; i++) {
         fscanf(arquivo, "%d", &array[i]);
     }
 
-    // Fechar o arquivo
+    
     fclose(arquivo);
     
     // Ordenar o array usando o Quick Sort
@@ -84,28 +84,23 @@ int main(int argc, char* argv[]) {
 
     printf("%.10f\n", tempo_decorrido);
     
-
-    // Criar o nome do arquivo de saída
     sprintf(nome_arquivo_saida, "%s-ok.txt", "inputs/D-5000");
 
-    // Abrir o arquivo de saída
+    
     arquivo_ordenado = fopen(nome_arquivo_saida, "w");
 
-    // Verifique se o arquivo de saída foi aberto corretamente
     if (arquivo_ordenado == NULL) {
         printf("Erro ao abrir o arquivo de saída.\n");
         return 1;
     }
 
-    // Escrever os números ordenados no arquivo de saída
+    
     for (int i = 0; i < num_numeros; i++) {
         fprintf(arquivo_ordenado, "%d\n", array[i]);
     }
 
-    // Fechar o arquivo de saída
+    
     fclose(arquivo_ordenado);
-
-    // Liberar memória alocada para o array
     free(array);
 
     return 0;
