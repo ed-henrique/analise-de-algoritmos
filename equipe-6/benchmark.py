@@ -48,6 +48,8 @@ def run_code():
     file_handler.setFormatter(csvFormatter)
     file_logger.addHandler(file_handler)
 
+    file_logger.debug(f"Algoritmo;Entrada;Tempo")
+
     for input in PATH_FILES_INPUT_LIST:
 
         if not os.path.exists(input):
@@ -75,7 +77,7 @@ def run_code():
                         print(stderr)
 
                 time_average = sum(times) / len(times)
-                file_logger.debug(f"{BINARY_PROGRAM};{input[:-4]};{time_average};")
+                file_logger.debug(f"{BINARY_PROGRAM};{input[:-4]};{time_average}")
 
 def main():
     list_files_input()
