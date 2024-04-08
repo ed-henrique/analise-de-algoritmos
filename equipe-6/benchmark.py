@@ -9,6 +9,7 @@ import sys
 import logging
 
 formatter = logging.Formatter('%(process)d - [%(asctime)s] : %(levelname)s -> %(message)s')
+csvFormatter = logging.Formatter('%(message)s')
 
 file_logger = logging.getLogger('file_logger')
 file_logger.setLevel(logging.DEBUG)
@@ -42,37 +43,39 @@ def list_files_input():
 
 
 def run_code():
+    file_handler = logging.FileHandler("ok.csv")
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(csvFormatter)
+    file_logger.addHandler(file_handler)
+
     for input in PATH_FILES_INPUT_LIST:
-        file_handler = logging.FileHandler("logs/" + input[:-4] + '-ok.csv')
-        file_handler.setLevel(logging.DEBUG)
-        file_handler.setFormatter(formatter)
-
-        file_logger.addHandler(file_handler)
-
-        file_logger.debug(input + ";")
 
         if not os.path.exists(input):
             stdout_logger.error(f"Input file: {input} not found")            
         else:
             for binary in BINARY_PROGRAM:
-            cmd = shlex.split("./" + BINARY_PROGRAM + " " + input)
-            for count_time in range(TIMES_RUN):
-                stdout_logger.debug(f"Input file: {input} - Time {count_time}")            
-                file_logger.debug(f"Running input: {input} - Time {count_time}")
+                cmd = shlex.split("./" + binary + " " + input[:-4])
 
-                process = subprocess.Popen(cmd,
-                        stdout=subprocess.PIPE, 
-                        stderr=subprocess.PIPE,
-                        universal_newlines=True)
-                stdout, stderr = process.communicate()            
-                if not stderr:
-                    file_logger.debug(f"Program output: - Time {count_time}")
-                    file_logger.debug(f"---------------------------")
-                    file_logger.debug(stdout)
-                    file_logger.debug(f"---------------------------")
+                times = []
 
-        file_logger.removeHandler(file_handler)
+                for count_time in range(TIMES_RUN):
+                    stdout_logger.debug(f"Binary: {BINARY_PROGRAM} - Input file: {input} - Time {count_time}")            
 
+                    process = subprocess.Popen(cmd,
+                            stdout=subprocess.PIPE, 
+                            stderr=subprocess.PIPE,
+                            universal_newlines=True)
+                    stdout, stderr = process.communicate()            
+
+                    if not stderr:
+                        stdout_logger.debug(f"Time elapsed: {stdout}s")
+                        stdout_logger.debug("-----------------------------------------------------------------")
+                        time.append(float(stdout))
+                    else:
+                        print(stderr)
+
+                time_average = sum(times) / len(times)
+                file_logger.debug(f"{BINARY_PROGRAM};{input[:-4]};{time_average};")
 
 def main():
     list_files_input()
