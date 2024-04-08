@@ -29,7 +29,7 @@ Usage mode:
 3) all outputs are save in the file called execution_log.txt
 """
 
-BINARY_PROGRAM = "otimo"
+BINARY_PROGRAM = ["merge", "quick", "shell"]
 INPUTS_FILE = "inputs"
 TIMES_RUN = 13
 PATH_FILES_INPUT_LIST = []
@@ -43,17 +43,18 @@ def list_files_input():
 
 def run_code():
     for input in PATH_FILES_INPUT_LIST:
-        file_handler = logging.FileHandler(input + '.log')
+        file_handler = logging.FileHandler("logs/" + input[:-4] + '-ok.csv')
         file_handler.setLevel(logging.DEBUG)
         file_handler.setFormatter(formatter)
 
         file_logger.addHandler(file_handler)
 
-        file_logger.debug(f'Running the program with each input {TIMES_RUN} times')
+        file_logger.debug(input + ";")
 
         if not os.path.exists(input):
             stdout_logger.error(f"Input file: {input} not found")            
         else:
+            for binary in BINARY_PROGRAM:
             cmd = shlex.split("./" + BINARY_PROGRAM + " " + input)
             for count_time in range(TIMES_RUN):
                 stdout_logger.debug(f"Input file: {input} - Time {count_time}")            
