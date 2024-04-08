@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void merge(int arr[], int l, int m, int r) {
     int i, j, k;
@@ -55,7 +56,9 @@ void mergeSort(int arr[], int l, int r) {
     }
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    clock_t inicio, fim;
+    double tempo_decorrido;
     FILE *arquivo;
     FILE *arquivo_ordenado;
     int *array;
@@ -64,7 +67,10 @@ int main() {
     char nome_arquivo_saida[100];
     
     // Abra o arquivo para leitura
-    arquivo = fopen("inputs/D-1000.txt", "r");
+    char nome_do_arquivo[1024];
+    sprintf(nome_do_arquivo, "%s.txt", argv[1]);
+    arquivo = fopen(nome_do_arquivo, "r");
+
 
     // Verifique se o arquivo foi aberto corretamente
     if (arquivo == NULL) {
@@ -96,10 +102,18 @@ int main() {
     // Fechar o arquivo
     fclose(arquivo);
 
+    inicio = clock();
     mergeSort(array, 0, num_numeros - 1);
+    fim = clock();
+    
+    tempo_decorrido = (double)(fim - inicio) / CLOCKS_PER_SEC;
+
+    printf("%.10f\n", tempo_decorrido);
+
+    
 
     // Criar o nome do arquivo de saída
-    sprintf(nome_arquivo_saida, "outputs/%s-ok.txt", "inputs/D-1000");
+    sprintf(nome_arquivo_saida, "%s-ok.txt", "inputs/D-1000");
 
     // Abrir o arquivo de saída
     arquivo_ordenado = fopen(nome_arquivo_saida, "w");

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void swap(int *a, int *b) {
     int t = *a;
@@ -30,7 +31,9 @@ void quickSort(int array[], int low, int high) {
     }
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    clock_t inicio, fim;
+    double tempo_decorrido;
     FILE *arquivo;
     FILE *arquivo_ordenado;
     int *array;
@@ -38,7 +41,9 @@ int main() {
     char nome_arquivo_saida[100];
     
     // Abra o arquivo para leitura
-    arquivo = fopen("inputs/D-5000.txt", "r");
+    char nome_do_arquivo[1024];
+    sprintf(nome_do_arquivo, "%s.txt", argv[1]);
+    arquivo = fopen(nome_do_arquivo, "r");
 
     // Verifique se o arquivo foi aberto corretamente
     if (arquivo == NULL) {
@@ -71,7 +76,14 @@ int main() {
     fclose(arquivo);
     
     // Ordenar o array usando o Quick Sort
+    inicio = clock();
     quickSort(array, 0, num_numeros - 1);
+    fim = clock();
+
+    tempo_decorrido = (double)(fim - inicio) / CLOCKS_PER_SEC;
+
+    printf("%.10f\n", tempo_decorrido);
+    
 
     // Criar o nome do arquivo de saída
     sprintf(nome_arquivo_saida, "%s-ok.txt", "inputs/D-5000");
