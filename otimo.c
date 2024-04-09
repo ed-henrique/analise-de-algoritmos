@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct timeval t1, t2;
 double elapsedTime;
