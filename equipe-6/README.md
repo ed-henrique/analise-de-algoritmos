@@ -54,11 +54,15 @@ CUDA.
 
 </div>
 
+<!-- Definir qual foi o metodo utilizado para exeperimentação -->
+
 A avaliação experimental do artigo demonstra o desempenho superior do CUDA-quicksort em relação ao GPU-quicksort e ao CDP-quicksort da NVIDIA, exibindo aproximadamente quatro e três vezes mais rapidez na execução, respectivamente, atribuída principalmente ao acesso otimizado à memória global. Mesmo ao implementar uma versão recursiva usando a tecnologia CDP, o CUDA-quicksort manteve sua execução mais rápida, especialmente em sua forma iterativa. Além disso, ao ser comparado a outros algoritmos avançados de ordenação baseados em GPU, o CUDA-quicksort superou quase todos, exceto o Thrust Radix Sort, na ordenação de grandes sequências de inteiros. No entanto, na ordenação de dados estruturados, o CUDA-quicksort superou o Thrust Radix Sort.
 
 ### [Sorting on CUDA](https://digitalcommons.providence.edu/cgi/viewcontent.cgi?article=1000&context=computer_science_students)
 
 **1. Algoritmo**
+
+<!-- Fazer uma breve descrição dos algortimos -->
 
 Quicksort, Bitonic Sort e Radix Sort.
 
