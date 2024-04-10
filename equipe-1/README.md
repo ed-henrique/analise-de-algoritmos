@@ -1,6 +1,6 @@
 # Script em python Equipe 1
 
-## Execuçao do script 
+## Execuçao do script randon
 - Windows 
 ```
 python .\Script_random.py 
@@ -22,3 +22,5 @@ with open('D.txt', 'w') as file:
 - Arquivos Aleatorios saida A.txt
 - Arquivos Ordenados saida O.txt
 - Arquivos Decrescentes Saida D.txt
+
+

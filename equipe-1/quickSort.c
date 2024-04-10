@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 
+
 // Função para trocar dois elementos em um array
 void swap(int* a, int* b) {
     int temp = *a;
@@ -61,7 +62,7 @@ int main() {
     }
 
     // Cria o diretório de saída se não existir
-    mkdir("outputs");
+    //mkdir("outputs");
 
     // Itera sobre os arquivos no diretório de entrada
     while ((entry = readdir(dir)) != NULL) {

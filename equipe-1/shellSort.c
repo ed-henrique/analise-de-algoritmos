@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 
+
 // Função para realizar o ShellSort 
 void shellSort(int arr[], int n) {
     // Inicia com o intervalo grande e o reduz gradualmente
@@ -38,7 +39,7 @@ int main() {
     }
 
     // Cria o diretório de saída se não existir
-    mkdir("outputs");
+    //mkdir("outputs");
 
     // Itera sobre os arquivos no diretório de entrada
     while ((entry = readdir(dir)) != NULL) {
