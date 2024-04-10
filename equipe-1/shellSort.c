@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/time.h>
 #include <string.h>
-#include <dirent.h>
-#include <sys/types.h>
-
 
 // Função para realizar o ShellSort 
 void shellSort(int arr[], int n) {
@@ -20,93 +18,87 @@ void shellSort(int arr[], int n) {
     }
 }
 
-// Função para imprimir um array
-void printArray(int A[], int size, FILE *output_file) {
-    for (int i = 0; i < size; i++) {
-        fprintf(output_file, "%d,", A[i]);
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        printf("Uso: %s <caminho_para_arquivo_de_entrada>\n", argv[0]);
+        return -1;
     }
-}
 
-int main() {
-    DIR *dir;
-    struct dirent *entry;
-
-    // Abre o diretório de entrada
-    dir = opendir("inputs");
-    if (dir == NULL) {
-        printf("Erro ao abrir o diretório de entrada.\n");
+    FILE *inputFile, *outputFile;
+    char *inputFileName = argv[1];
+    int *arr;
+    int n = 0;
+    
+    
+    // Abre o arquivo de entrada
+    inputFile = fopen(inputFileName, "r");
+    if (inputFile == NULL) {
+        perror("Erro ao abrir o arquivo de entrada");
+        return -1;
+    }
+    
+    // Lê o numero de linhas do arquivo de entrada
+    int num;
+    while (fscanf(inputFile, "%d", &num) == 1) {
+        n++;
+    }
+     
+    //define o nome do arquivo de saída de forma dinamica so com o numero de linhas que fora ordenado sempre na pasta outputs
+    char outputFileName[100] = "outputs/";
+    strcat(outputFileName, "sorted_");
+    char numStr[10];
+    sprintf(numStr, "%d", n);
+    strcat(outputFileName, numStr);
+    strcat(outputFileName, ".txt");
+    
+    // Aloca memória para o array
+    arr = (int*)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf("Erro ao alocar memória.\n");
         return 1;
     }
+    
+    // Lê os números do arquivo de entrada e adiciona ao array
+    for (int i = 0; i < n; i++) {
+        fscanf(inputFile, "%d", &arr[i]);
+    }
+    
+    // Fecha o arquivo de entrada
+    fclose(inputFile);
 
-    // Cria o diretório de saída se não existir
-    //mkdir("outputs");
+    // Inicia o timer
+    struct timeval start, end;
+    gettimeofday(&start, NULL);
 
-    // Itera sobre os arquivos no diretório de entrada
-    while ((entry = readdir(dir)) != NULL) {
-        // Ignora os diretórios '.' e '..'
-        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
-            continue;
-        }
+    // Chama o algoritmo de ordenação shellSort
+    shellSort(arr, n);
 
-        // Constrói o caminho completo do arquivo
-        char filename[100];
-        snprintf(filename, sizeof(filename), "inputs/%s", entry->d_name);
+    // Termina o timer
+    gettimeofday(&end, NULL);
 
-        FILE *input_file = fopen(filename, "r");
-        if (input_file == NULL) {
-            printf("Erro ao abrir o arquivo de entrada: %s\n", filename);
-            continue;
-        }
+    // Calcula o tempo de execução em segundos
+    double elapsedTime = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
 
-        int num_elements = 0;
-        int capacity = 10;
-        int *arr = (int *)malloc(capacity * sizeof(int));
-        if (arr == NULL) {
-            printf("Erro de alocação de memória.\n");
-            fclose(input_file);
-            continue;
-        }
-
-        int number;
-        while (fscanf(input_file, "%d,", &number) == 1) {
-            if (num_elements == capacity) {
-                capacity *= 2;
-                int *temp = (int *)realloc(arr, capacity * sizeof(int));
-                if (temp == NULL) {
-                    printf("Erro de realocação de memória.\n");
-                    fclose(input_file);
-                    free(arr);
-                    continue;
-                }
-                arr = temp;
-            }
-            arr[num_elements++] = number;
-        }
-
-        fclose(input_file);
-
-        // Aplica o Shell Sort
-        shellSort(arr, num_elements);
-
-        // Constrói o nome do arquivo de saída
-        char output_filename[100];
-        snprintf(output_filename, sizeof(output_filename), "outputs/%s_sorted.txt", entry->d_name);
-
-        FILE *output_file = fopen(output_filename, "w");
-        if (output_file == NULL) {
-            printf("Erro ao abrir o arquivo de saída: %s\n", output_filename);
-            free(arr);
-            continue;
-        }
-
-        // Escreve o array ordenado no arquivo de saída
-        printArray(arr, num_elements, output_file);
-
-        fclose(output_file);
-        free(arr);
+    // Abre o arquivo de saída
+    outputFile = fopen(outputFileName, "w");
+    if (outputFile == NULL) {
+        perror("Erro ao criar o arquivo de saída");
+        return -1;
     }
 
-    closedir(dir);
+    // Escreve os números ordenados no arquivo de saída
+    for (int i = 0; i < n; i++) {
+        fprintf(outputFile, "%d\n", arr[i]);
+    }
+
+    // Fecha o arquivo de saída
+    fclose(outputFile);
+    
+    // Libera a memória alocada para o array
+    free(arr);
+    
+    // Imprime o tempo de execução
+    printf("%.6f", elapsedTime);
 
     return 0;
 }

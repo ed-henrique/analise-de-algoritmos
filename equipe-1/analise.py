@@ -4,6 +4,7 @@ import subprocess
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import logging
 from tqdm import tqdm
 
@@ -44,16 +45,20 @@ class Analise():
         :return: retorna o tempo de execução do algoritimo.
         """
         cmd = shlex.split("./" + binary + " " + input_file)
-        start_time = time.time() # Start time
         process = subprocess.Popen(cmd,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE,
                                    universal_newlines=True)
         stdout, stderr = process.communicate()
-        end_time = time.time() # End time
-        if stdout and stderr:
-            logging.debug(f"Program output error: {stdout}")
-        return end_time - start_time
+        if stderr != "":
+            logging.error(f"Error running {binary} - {input_file} - {stderr}")
+            return None
+        try:
+            time = float(stdout.split()[0])
+        except ValueError:
+            logging.error(f"Error running {binary} - {input_file} - {stdout} : {stderr}")
+            return None
+        return time
     
     def run(self,input_category, num_tests: int = 13):
         """
@@ -74,7 +79,7 @@ class Analise():
         for binary in self.algoritimos:
             print("Analisando o algoritimo: {} ".format(binary) )
             for category in input_category:
-                print(" Analisando a categoria: {}".format(category))
+                print("\n Analisando a categoria: {}".format(category))
                 for input_file in tqdm(category):
                     input_size = self._get_input_size(self.diretorio + input_file)
                     for test_number in range(num_tests):
@@ -91,69 +96,64 @@ class Analise():
         logging.debug(f"finished the run method")
         return self.data_A, self.data_O, self.data_D
 
-    def plot_data(self, system_info: str, cpu_info: str, ram_info: str, diretorio: str = "./", csv: bool = False):
+    def plot_data(self, system_info: str, cpu_info: str, ram_info: str, diretorio: str = "./"):
         """
         Método para plotar os dados de tempo de execução.
         :param system_info: Sistema operacional da maquina ao qual fora executado os testes.
         :param cpu_info: processador da maquina ao qual fora executado os testes.
         :param ram_info: tamanho da memoria ram da maquina ao qual fora executado os testes.
         :param diretorio: local onde os arquivos csv estão localizados. por padrão é o diretorio atual.
-        :param csv: varialvel para indicar se quer importar os dados de um arquivo csv. por padrão é False. usando o diretorio passado como local de importação.
         :return: 
         """
         logging.debug(f"Plotting the data")
-        if csv:
-            #importa os csv
-            data_A = pd.read_csv(diretorio + 'data_A.csv', index_col=0)
-            data_D = pd.read_csv(diretorio + 'data_O.csv', index_col=0)
-            data_O = pd.read_csv(diretorio + 'data_D.csv', index_col=0)
-        else:
-            data_A = self.data_A
-            data_D = self.data_D
-            data_O = self.data_O
         
+        #importa os csv
+        data_A = pd.read_csv(diretorio + 'data_A.csv', index_col=0)
+        data_D = pd.read_csv(diretorio + 'data_O.csv', index_col=0)
+        data_O = pd.read_csv(diretorio + 'data_D.csv', index_col=0)
+
         # Configurações do gráfico
-        plt.figure(figsize=(10, 6))  # Tamanho da figura
-    
+        plt.figure(figsize=(12, 10))  # Tamanho da figura
+
         # Plot do primeiro gráfico
         plt.subplot(3, 1, 1)  # Posição do primeiro gráfico
         for line in data_A.index:
             print(line)
-            plt.plot(data_A.columns, data_A.loc[line], marker='o', label=line)  # Plot dos valores do primeiro DataFrame
+            plt.plot(data_A.columns, (data_A.loc[line] * 1000), marker='o', label=line)  # Plot dos valores do primeiro DataFrame
         plt.title('Gráfico Input Aleatorio (Tempo x Tamanho)')  # Título do gráfico
         plt.xlabel('Tamanho da entrada')  # Rótulo do eixo x
-        plt.ylabel('Tempo (s)')  # Rótulo do eixo y
+        plt.ylabel('Tempo (ms)')  # Rótulo do eixo y
         plt.legend()  # Exibir legenda
-    
+
         # Plot do segundo gráfico
         plt.subplot(3, 1, 2)
         for line in data_O.index:
-            plt.plot(data_O.columns, data_O.loc[line], marker='o', label=line)
+            plt.plot(data_O.columns, (data_O.loc[line] * 1000), marker='o', label=line)
         plt.title('Gráfico Input Ordenado (Tempo x Tamanho)')
         plt.xlabel('Tamanho da entrada')
-        plt.ylabel('Tempo (s)')
+        plt.ylabel('Tempo (ms)')
         plt.legend()
-        
+
         # Plot do terceiro gráfico
         plt.subplot(3, 1, 3)
         for line in data_D.index:
-            plt.plot(data_D.columns, data_D.loc[line], marker='o', label=line)
+            plt.plot(data_D.columns, (data_D.loc[line] * 1000), marker='o', label=line)
         plt.title('Gráfico Input Decresente (Tempo x Tamanho)')
         plt.xlabel('Tamanho da entrada')
-        plt.ylabel('Tempo (s)')
+        plt.ylabel('Tempo (ms)')
         plt.legend()
-        
+
         # Informações do sistema
         plt.suptitle(f'Análise de desempenho dos algoritmos de ordenação\nSistema: {system_info} CPU: {cpu_info} RAM: {ram_info}')
-       
 
-    # Ajustes de layout
+        
+        # Ajustes de layout
         plt.tight_layout()
-    
+        # Salvar o gráfico
+        plt.savefig('grafico.png')
         # Exibir os gráficos
         plt.show()
-                        
-    
+
     def save_data(self, diretorio: str = "./"):
         """
         Método para salvar os dados de tempo de execução em arquivos csv.
@@ -179,6 +179,7 @@ categories2 = [['a-1000.txt', 'a-5000.txt', 'a-10000.txt'],
 
 
 analise = Analise(['mergeSort', 'shellSort'], 'inputs/') #cria o objeto analise com os algoritimos e o diretorio das entradas
-# analise.run(categories)  #roda a analise passando as categorias de cada input
-# analise.save_data() #salva os dados em csv
-analise.plot_data("MacOs", "M1 arm", 8, "Data/", True) #plota os dados passando os parametros do sistema
+analise.run(categories)  #roda a analise passando as categorias de cada input
+analise.save_data() #salva os dados em csv
+analise.plot_data("MacOs", "M1", 8,  ) #plota os dados passando os parametros do sistema
+
