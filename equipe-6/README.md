@@ -64,13 +64,43 @@ Quicksort, Bitonic Sort e Radix Sort.
 
 **2. Técnica de Paralelismo**
 
-EM PROGRESSO.
+**2.1 Quick Sort**
 
-**2.1 Técnica de Paralelismo**
+O primeiro indice de início é definido como 0, enquanto o de fim é definido como `N-1`, onde N é o tamanho do conjunto de dados. O código Furthur é executado sob a condição de que o indice da thread, `idx`, seja maior ou igual a zero. Se a condição for atendida, as variáveis `L` e `R` serão definidas como `start[idx]` e `end[idx]`, respectivamente. `L` armazena o indice necessário mais à esquerda do conjunto de dados. Portanto, para começar, ele é definido como zero. Da mesma forma, `R` armazena o índice necessário mais à direita do conjunto de dados. Portanto, para começar, é definido como `Ny = 1`. Se `L` for menor que `R`, então o valor do pivô será definido como o valor armazenado no local `L`.
 
-**2.2 Técnica de Paralelismo**
+```
+pivo = matriz[L]
+```
 
-**2.3 Técnica de Paralelismo**
+`array` é o conjunto de dados que contém os números a serem classificados. Os números neste conjunto de dados são então comparados com o pivô. Começamos da direita e diminuímos `R` até que o primeiro valor menor que o pivô seja encontrado. Uma vez encontrado este valor, ele é copiado para a posição `L` no conjunto de dados. Agora, comparamos a partir da esquerda incrementando `L` até que o primeiro valor maior que o pivõ seja encontrado. Este valor é copiado para a posição `R` no conjunto de dados. Este procedimento é repetido enquanto `L` for menor que `R`. Quando `L` e `R` se tomam iguais, copiamos o pivô para esta posição no conjunto de dados. Em seguida, o próximo indice nas matrizes `start` e `end` é definido e o indice atual de `end` é atualizado.
+
+```
+valores[L] = pivo
+iniciar[idx+1]= L+1; fim[idx+1]-fim[idx]; fiml[idx++]-L
+```
+
+Além disso, se a condição:
+
+```
+if (fim[idx] - inicio[idx] > fim[idx - 1] - inicio[idx - 1])
+```
+
+é verdadeiro, então `start[idx]` é trocado por `start[idx - 1]` e `end[idx]` é trocado por `end[idx - 1]`. Os valores nas matrizes `start` e `end` são usados para atualizar `L` e `R`, respectivamente, quando o código no loop é repetido. Se `L` não for menor que `R`, entretanto, o indice do *thread*, `idx`, é decrementado até que `L` seja definido com um valor menor que `R`. Quando `idx` se torna menor que zero, o conjunto de dados è classificado e a função do *kernel* termina.
+
+**2.2 Bitonic Sort**
+
+**2.3 Radix Sort**
+
+1. Converter a entrada de decimal para binário;
+2. Extrair os dígitos necessários de todos os números no conjunto de dados em uma matriz, digamos, `matriz1`;
+3. Definir 1 para todas as chaves de classificação falsas (ou 0s) e 0 para todas as chaves de classificação verdadeiras (1s);
+4. Armazenar na `matriz2`;
+5. contar todos os 1s na `matriz2`, incrementando um contador toda vez que um 1 era encontrado e armazenar o contador em cada etapa na `matriz3`;
+6. A `matriz3` agora contém o endereço de destino para cada entrada que produziu uma chave falsa. O número total de chaves falsas para `N` entradas pode ser calculado da seguinte forma: `totalFalso = matriz2[N-1] + matriz3[N-1]`;
+7. O endereço de destino para cada entrada que produziu uma chave verdadeira é calculado e armazenado em `matriz4`. O endereço pode ser calculado como: `matriz4[idx] = idx - matrizy3[idx] + totalFalses`;
+8. Finalmente, todos os endereços de destino são armazenados em uma matriz e a entrada é reorganizada de acordo. O padrão de endereço de destino é uma permutação perfeita dos índices da matriz de entrada. Portanto, não há conflitos de gravação.
+
+Essas etapas são repetidas para cada bit em uma sequência binária.
 
 **3. Linguagem de Programação**
 
