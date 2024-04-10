@@ -51,6 +51,8 @@ class Analise():
                                    universal_newlines=True)
         stdout, stderr = process.communicate()
         end_time = time.time() # End time
+        if stdout and stderr:
+            logging.debug(f"Program output error: {stdout}")
         return end_time - start_time
     
     def run(self,input_category, num_tests: int = 13):
@@ -78,6 +80,7 @@ class Analise():
                     for test_number in range(num_tests):
                         time += self._run_binary(binary, self.diretorio + input_file)
                     media = time/num_tests
+                    time = 0
                     if 'a-' in input_file:
                         self.data_A.loc[binary, input_size] = media
                     if 'o-' in input_file:
@@ -117,7 +120,7 @@ class Analise():
         for line in data_A.index:
             print(line)
             plt.plot(data_A.columns, data_A.loc[line], marker='o', label=line)  # Plot dos valores do primeiro DataFrame
-        plt.title('Gráfico A (Tamanho x Tempo)')  # Título do gráfico
+        plt.title('Gráfico Input Aleatorio (Tempo x Tamanho)')  # Título do gráfico
         plt.xlabel('Tamanho da entrada')  # Rótulo do eixo x
         plt.ylabel('Tempo (s)')  # Rótulo do eixo y
         plt.legend()  # Exibir legenda
@@ -126,7 +129,7 @@ class Analise():
         plt.subplot(3, 1, 2)
         for line in data_O.index:
             plt.plot(data_O.columns, data_O.loc[line], marker='o', label=line)
-        plt.title('Gráfico O (Tamanho x Tempo)')
+        plt.title('Gráfico Input Ordenado (Tempo x Tamanho)')
         plt.xlabel('Tamanho da entrada')
         plt.ylabel('Tempo (s)')
         plt.legend()
@@ -135,7 +138,7 @@ class Analise():
         plt.subplot(3, 1, 3)
         for line in data_D.index:
             plt.plot(data_D.columns, data_D.loc[line], marker='o', label=line)
-        plt.title('Gráfico D (Tamanho x Tempo)')
+        plt.title('Gráfico Input Decresente (Tempo x Tamanho)')
         plt.xlabel('Tamanho da entrada')
         plt.ylabel('Tempo (s)')
         plt.legend()
@@ -175,7 +178,7 @@ categories2 = [['a-1000.txt', 'a-5000.txt', 'a-10000.txt'],
               ]
 
 
-analise = Analise(['mergeSort', 'shellSort', 'quickSort'], 'inputs/') #cria o objeto analise com os algoritimos e o diretorio das entradas
+analise = Analise(['mergeSort', 'shellSort'], 'inputs/') #cria o objeto analise com os algoritimos e o diretorio das entradas
 analise.run(categories)  #roda a analise passando as categorias de cada input
 analise.save_data() #salva os dados em csv
-analise.plot_data("MacOs", "M1 arm", 8) #plota os dados passando os parametros do sistema
+analise.plot_data("MacOs", "M1 arm", 8,) #plota os dados passando os parametros do sistema
