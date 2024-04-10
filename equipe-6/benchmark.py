@@ -30,7 +30,7 @@ Usage mode:
 3) all outputs are save in the file called execution_log.txt
 """
 
-BINARY_PROGRAM = ["merge", "quick", "shell"]
+BINARY_PROGRAM = ["quick"]
 INPUTS_FILE = "inputs"
 TIMES_RUN = 13
 PATH_FILES_INPUT_LIST = []
@@ -43,14 +43,14 @@ def list_files_input():
 
 
 def run_code():
-    file_handler = logging.FileHandler("ok.csv")
+    file_handler = logging.FileHandler("results.csv")
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(csvFormatter)
     file_logger.addHandler(file_handler)
 
     file_logger.debug(f"Algoritmo;Entrada;Tempo")
 
-    for input in PATH_FILES_INPUT_LIST:
+    for input in PATH_FILES_INPUT_LIST[14:]:
 
         if not os.path.exists(input):
             stdout_logger.error(f"Input file: {input} not found")            
@@ -61,7 +61,7 @@ def run_code():
                 times = []
 
                 for count_time in range(TIMES_RUN):
-                    stdout_logger.debug(f"Binary: {BINARY_PROGRAM} - Input file: {input} - Time {count_time}")            
+                    stdout_logger.debug(f"Binary: {binary} - Input file: {input.split('/')[-1][:-4]} - Time {count_time+1}")            
 
                     process = subprocess.Popen(cmd,
                             stdout=subprocess.PIPE, 
@@ -70,17 +70,17 @@ def run_code():
                     stdout, stderr = process.communicate()            
 
                     if not stderr:
-                        stdout_logger.debug(f"Time elapsed: {stdout}s")
-                        stdout_logger.debug("-----------------------------------------------------------------")
-                        time.append(float(stdout))
+                        stdout_logger.debug(f"Time elapsed: {stdout}-----------------------------------------------------------------")
+                        times.append(float(stdout))
                     else:
                         print(stderr)
 
                 time_average = sum(times) / len(times)
-                file_logger.debug(f"{BINARY_PROGRAM};{input[:-4]};{time_average}")
+                file_logger.debug(f"{binary};{input.split('/')[-1][:-4]};{time_average}")
 
 def main():
     list_files_input()
+    PATH_FILES_INPUT_LIST.sort()
     run_code()
 
 if __name__ == "__main__":

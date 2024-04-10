@@ -24,21 +24,38 @@ int partition(int array[], int low, int high) {
 }
 
 void quickSort(int array[], int low, int high) {
-    if (low < high) {
+    int* stack = (int*)malloc((high - low + 1) * sizeof(int));
+    int top = -1;
+
+    stack[++top] = low;
+    stack[++top] = high;
+
+    while (top >= 0) {
+        high = stack[top--];
+        low = stack[top--];
+
         int pi = partition(array, low, high);
-        quickSort(array, low, pi - 1);
-        quickSort(array, pi + 1, high);
+
+        if (pi - 1 > low) {
+            stack[++top] = low;
+            stack[++top] = pi - 1;
+        }
+
+        if (pi + 1 < high) {
+            stack[++top] = pi + 1;
+            stack[++top] = high;
+        }
     }
+
+    free(stack);
 }
 
 int main(int argc, char* argv[]) {
     clock_t inicio, fim;
     double tempo_decorrido;
     FILE *arquivo;
-    FILE *arquivo_ordenado;
     int *array;
     int num_numeros = 0;
-    char nome_arquivo_saida[100];
     
     
     char nome_do_arquivo[1024];
@@ -83,24 +100,7 @@ int main(int argc, char* argv[]) {
     tempo_decorrido = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
     printf("%.10f\n", tempo_decorrido);
-    
-    sprintf(nome_arquivo_saida, "%s-ok.txt", "inputs/D-5000");
 
-    
-    arquivo_ordenado = fopen(nome_arquivo_saida, "w");
-
-    if (arquivo_ordenado == NULL) {
-        printf("Erro ao abrir o arquivo de saída.\n");
-        return 1;
-    }
-
-    
-    for (int i = 0; i < num_numeros; i++) {
-        fprintf(arquivo_ordenado, "%d\n", array[i]);
-    }
-
-    
-    fclose(arquivo_ordenado);
     free(array);
 
     return 0;
