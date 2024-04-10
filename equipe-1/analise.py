@@ -23,6 +23,7 @@ class Analise():
         self.data_A = pd.DataFrame()
         self.data_O = pd.DataFrame()
         self.data_D = pd.DataFrame()
+        logging.basicConfig(filename="analise.log" ,level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
         
     
     def _get_input_size(self, input):
@@ -43,7 +44,6 @@ class Analise():
         :return: retorna o tempo de execução do algoritimo.
         """
         cmd = shlex.split("./" + binary + " " + input_file)
-        logging.debug(f"Running input: {input_file} - Time ")
         start_time = time.time() # Start time
         process = subprocess.Popen(cmd,
                                    stdout=subprocess.PIPE,
