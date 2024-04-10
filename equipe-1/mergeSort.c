@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 
+
 // Função para mesclar duas sub-arrays de arr[]
 // A primeira sub-array é arr[l..m]
 // A segunda sub-array é arr[m+1..r]
@@ -86,7 +87,7 @@ int main() {
     }
 
     // Cria o diretório de saída se não existir
-    mkdir("outputs");
+    //mkdir("outputs");
 
     // Itera sobre os arquivos no diretório de entrada
     while ((entry = readdir(dir)) != NULL) {

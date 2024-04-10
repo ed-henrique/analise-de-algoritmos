@@ -1,7 +1,7 @@
 import random
 
 # Gerar 1000 números aleatórios entre 1 e 1000
-numeros_aleatorios = [random.randint(1, 1000) for _ in range(1000)]
+numeros_aleatorios = [random.randint(1, 100) for _ in range(100)]
 
 # Salvar os números aleatórios em um arquivo
 with open('A.txt', 'w') as file:
