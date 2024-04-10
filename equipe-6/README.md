@@ -15,6 +15,8 @@ Para executar, é necessário estar no Linux ou em um ambiente WSL.
 
 O script vai gerar os arquivos `o.txt` (ordem ascendente), `d.txt` (ordem descendente) e `a.txt` (ordem aleatória) com os resultados.
 
+<div align="justify">
+
 ## Artigos
 
 ### [CUDA-quicksort: an improved GPU-based implementationof quicksort](https://onlinelibrary.wiley.com/doi/epdf/10.1002/cpe.3611)
@@ -83,3 +85,5 @@ CUDA.
 </div>
 
 O pesquisador implementou e avaliou os resultados para algoritmos de classificação paralela para classificação rápida, classificação bitônica e classificação radix em CUDA. Dentre elas, os algoritmos de classificação paralela se mostraram os mais eficientes para grandes volumes de dados, em especial o algoritmo de classificação bitônica.
+
+</div>
