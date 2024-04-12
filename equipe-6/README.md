@@ -64,7 +64,7 @@ CUDA.
 
 </div>
 
-<!-- Definir qual foi o metodo utilizado para exeperimentação -->
+O artigo descreve experimentos realizados em uma CPU Intel Xeon E5-2667 (2,90 GHz, 12 núcleos) e uma GPU NVIDIA Tesla Kepler K20c, avaliando o desempenho do algoritmo GPU-quicksort. Utilizando distribuições de benchmark de ordenação comuns, os autores analisam o tempo de computação necessário para diferentes tarefas, como seleção de pivô, particionamento, leitura e escrita de subsequências. Eles propõem mudanças para otimizar o desempenho do algoritmo e conduzem experimentos comparativos com outras técnicas de ordenação GPU, como CUDA-quicksort e CDP-quicksort
 
 A avaliação experimental do artigo demonstra o desempenho superior do CUDA-quicksort em relação ao GPU-quicksort e ao CDP-quicksort da NVIDIA, exibindo aproximadamente quatro e três vezes mais rapidez na execução, respectivamente, atribuída principalmente ao acesso otimizado à memória global. Mesmo ao implementar uma versão recursiva usando a tecnologia CDP, o CUDA-quicksort manteve sua execução mais rápida, especialmente em sua forma iterativa. Além disso, ao ser comparado a outros algoritmos avançados de ordenação baseados em GPU, o CUDA-quicksort superou quase todos, exceto o Thrust Radix Sort, na ordenação de grandes sequências de inteiros. No entanto, na ordenação de dados estruturados, o CUDA-quicksort superou o Thrust Radix Sort.
 
@@ -72,9 +72,11 @@ A avaliação experimental do artigo demonstra o desempenho superior do CUDA-qui
 
 **1. Algoritmo**
 
-<!-- Fazer uma breve descrição dos algortimos -->
+O Quicksort é um algoritmo de ordenação rápido e eficiente que utiliza a estratégia de dividir para conquistar. Ele escolhe um elemento pivô e rearranja o array de modo que os elementos menores que o pivô estejam à sua esquerda e os maiores estejam à sua direita. Em seguida, recursivamente, ordena as partições. Sua complexidade de tempo médio é O(n log n), tornando-o uma escolha popular para muitas aplicações.
 
-Quicksort, Bitonic Sort e Radix Sort.
+O Bitonic Sort é um algoritmo de ordenação paralela usado em hardware especializado. Ele opera em arrays bitônicos, que primeiro crescem e depois decrescem. O algoritmo usa uma rede de comparação e troca em fases para ordenar o array. Sua complexidade de tempo é O(log^2 n) em paralelo e O(n log^2 n) sequencialmente, o que o torna eficiente para grandes conjuntos de dados.
+
+O Radix Sort é um método de ordenação não comparativo que classifica os elementos com base em dígitos significativos. Ele processa cada dígito individualmente, da ordem menos para a mais significativa, e pode ser implementado usando técnicas como o método de ordenação de contagem ou o método de cubetas. O Radix Sort é eficiente para ordenar números inteiros ou strings de tamanho fixo, com uma complexidade de tempo de O(d * (n + k)), onde d é o número de dígitos, n é o número de elementos e k é a base do sistema numérico.
 
 **2. Técnica de Paralelismo**
 
