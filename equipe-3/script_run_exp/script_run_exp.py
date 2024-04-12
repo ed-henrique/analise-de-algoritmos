@@ -16,7 +16,7 @@ Usage mode:
 3) all outputs are save in the file called execution_log.txt
 """
 
-BINARY_PROGRAM = "quick_sort"
+BINARY_PROGRAM_LIST = ["merge_sort", "quick_sort", "shell_sort"]
 INPUTS_FILE = "inputs"
 TIMES_RUN = 13
 PATH_FILES_INPUT_LIST = []
@@ -30,24 +30,25 @@ def list_files_input():
 
 def run_code():
     logging.debug(f'Running the program with each input {TIMES_RUN} times')
-    for input in PATH_FILES_INPUT_LIST:
-        if not os.path.exists(input):
-            logging.error(f"Input file: {input} not found")            
-        else:
-            print("./" + BINARY_PROGRAM + " " + input)
-            cmd = shlex.split("./" + BINARY_PROGRAM + " " + input)
-            for count_time in range(TIMES_RUN):
-                logging.debug(f"Running input: {input} - Time {count_time}")
-                process = subprocess.Popen(cmd,
-                        stdout=subprocess.PIPE, 
-                        stderr=subprocess.PIPE,
-                        universal_newlines=True)
-                stdout, stderr = process.communicate()            
-                if not stderr:
-                    logging.debug(f"Program output: - Time {count_time}")
-                    logging.debug(f"---------------------------")
-                    logging.debug(stdout)
-                    logging.debug(f"---------------------------")
+    for BINARY_PROGRAM in BINARY_PROGRAM_LIST:
+        for input in PATH_FILES_INPUT_LIST:
+            if not os.path.exists(input):
+                logging.error(f"Input file: {input} not found")            
+            else:
+                print("./" + BINARY_PROGRAM + " " + input)
+                cmd = shlex.split("./" + BINARY_PROGRAM + " " + input)
+                for count_time in range(TIMES_RUN):
+                    logging.debug(f"Running input: {input} - Time {count_time}")
+                    process = subprocess.Popen(cmd,
+                            stdout=subprocess.PIPE, 
+                            stderr=subprocess.PIPE,
+                            universal_newlines=True)
+                    stdout, stderr = process.communicate()            
+                    if not stderr:
+                        logging.debug(f"Program output: - Time {count_time}")
+                        logging.debug(f"---------------------------")
+                        logging.debug(stdout)
+                        logging.debug(f"---------------------------")
 
 
 def main():

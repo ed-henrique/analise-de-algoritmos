@@ -3,6 +3,7 @@
 #include <time.h>
 #include <unistd.h>
 
+void print_arr(int* v, int n);
 int* read_numbers_file(char file_name[], int n);
 int count_file_lines(char file_name[]);
 void get_path_filename(char* buffer, char* path);

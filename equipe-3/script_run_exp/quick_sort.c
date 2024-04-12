@@ -9,37 +9,63 @@
 
 #define BILLION 1000000000L
 
-void swap(int* a, int* b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
 
-int partition(int* arr, int low, int high) {
-    int pivot = arr[high];
-    int i = (low - 1);
-
-    for (int j = low; j <= high - 1; j++) {
-        if (arr[j] < pivot) {
-            i++;
-            swap(&arr[i], &arr[j]);
-        }
-    }
-    swap(&arr[i + 1], &arr[high]);
-    return (i + 1);
-}
-
-void quickSort(int* arr, int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);
-
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
+// Function to swap two elements 
+void swap(int* a, int* b) 
+{ 
+    int temp = *a; 
+    *a = *b; 
+    *b = temp; 
+} 
+  
+// Partition function 
+int partition(int *arr, int low, int high) 
+{ 
+  
+    // initialize pivot to be the first element 
+    int pivot = arr[low]; 
+    int i = low; 
+    int j = high; 
+  
+    while (i < j) { 
+  
+        // condition 1: find the first element greater than 
+        // the pivot (from starting) 
+        while (arr[i] <= pivot && i <= high - 1) { 
+            i++; 
+        } 
+  
+        // condition 2: find the first element smaller than 
+        // the pivot (from last) 
+        while (arr[j] > pivot && j >= low + 1) { 
+            j--; 
+        } 
+        if (i < j) { 
+            swap(&arr[i], &arr[j]); 
+        } 
+    } 
+    swap(&arr[low], &arr[j]); 
+    return j; 
+} 
+  
+// QuickSort function 
+void quickSort(int *arr, int low, int high) 
+{ 
+    if (low < high) { 
+  
+        // call Partition function to find Partition Index 
+        int partitionIndex = partition(arr, low, high); 
+  
+        // Recursively call quickSort() for left and right 
+        // half based on partition Index 
+        quickSort(arr, low, partitionIndex - 1); 
+        quickSort(arr, partitionIndex + 1, high); 
+    } 
+} 
+  
 
 int main(int argc, char* argv[]){
-    char filename[100], order, algorithm_name[] = "quick_sort";
+    char filename[100], order, algorithm_name[] = "quick";
     int n;
 
     // search filename:

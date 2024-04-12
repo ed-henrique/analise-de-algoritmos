@@ -1,5 +1,11 @@
 #include "aux_functions.h"
 
+void print_arr(int* v, int n) {
+  int i;
+  for(i = 0; i < n; i++) printf("%d ", v[i]);
+  printf("\n");
+}
+
 int* read_numbers_file(char file_name[], int n) {
   int* numbers = (int*)malloc(n * sizeof(int));
 
@@ -72,9 +78,9 @@ void write_csv(char* algorithm_name, char order, int n, unsigned long long durat
   FILE* csv;
   if (!(access("log.csv", F_OK) != -1)) {
     csv = fopen(filename, "w");
-    fprintf(csv, "algorithm_name, order, n, duration_ns\n");
+    fprintf(csv, "algorithm_name,order,n,duration_ns\n");
   } else {
     csv = fopen(filename, "a");
   }
-  fprintf(csv, "%s, %c, %d, %llu\n", algorithm_name, order, n, duration);
+  fprintf(csv, "%s,%c,%d,%llu\n", algorithm_name, order, n, duration);
 }
