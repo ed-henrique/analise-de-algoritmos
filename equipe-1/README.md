@@ -23,6 +23,42 @@ with open('D.txt', 'w') as file:
 - Arquivos Ordenados saida O.txt
 - Arquivos Decrescentes Saida D.txt
 
+# Resultados dos testes 
+
+foi realizado os teste em duas maquinas distintas para comparação dos resultados
+
+## Processador M1 8GB de ram
+
+---
+
+## graficos
+
+Foi feito dois graficos separados para melhor visualização dos dados pois o quickSort teve um tempo de execução muito maior que os outros dois algoritmos.
+
+### mergeSort e shellSort
+
+![Grafico_Merge_e_shell.png](Testes/M1/Grafico_Merge_e_shell.png)
+
+### mergeSort, shellSort e quickSort
+
+![Grafico_Merge_Shell_Quick.png](Testes/M1/Graficos_3_algs.png)
+
+## Processador Intel(R) Xeon(R) E5620 8GB de ram
+
+---
+
+## graficos
+
+Foi feito dois graficos separados para melhor visualização dos dados pois o quickSort teve um tempo de execução muito maior que os outros dois algoritmos.
+
+### mergeSort e shellSort
+
+![Grafico_Merge_e_shell.png](Testes/Intel_Xeon/Grafico_Merge_e_shell.png)
+
+### mergeSort, shellSort e quickSort
+
+![Grafico_Merge_Shell_Quick.png](Testes/Intel_Xeon/Graficos_3_algs.png)
+
 # Artigos Aula 10/4
 
 ### Artigo 00
