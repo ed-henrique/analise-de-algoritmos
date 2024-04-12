@@ -103,5 +103,7 @@ int main(int argc, char* argv[]){
     printf("%s - %s - elapsed time = %llu nanoseconds\n", algorithm_name ,filename, (long long unsigned int) diff);
     write_csv(algorithm_name, order, n, (long long unsigned int) diff);
     
+    free(numbers);
+    
     return 0;
 }
