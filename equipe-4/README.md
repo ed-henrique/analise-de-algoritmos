@@ -8,7 +8,7 @@ Este script Python gera três arquivos de texto, cada um contendo uma sequência
 
 Para executar este script, você precisará de:
 
-- Python 3.x
+- Python 3.12
 
 ## Como Executar
 
