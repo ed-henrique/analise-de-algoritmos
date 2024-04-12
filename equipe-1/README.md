@@ -159,13 +159,11 @@ computadores.
 
 
 ### Tecnica de Pararelismo
-Paralelização de uma implementação in-place do algoritmo mergeSort utilizando threads 
+Paralelização de uma implementação in-place do algoritmo mergeSort utilizando threads depois separação de trechos menores e maiores que um elemento específico.
 
 ### Linguaguem de Programação
-Usando a linguagem JAVA
+Usando a linguagem JAVA e um framework de testes para avaliar diferentes configurações de vetores de entrada. 
 
 ### Avaliação experimental
-Observa-se que a redução do tempo de 
-execução foi mais significativa para a maior entrada (10 milhões de elementos – linha
-superior do gráfico).
+O melhor desempenho mostrado foi com 8 threads paralelas, que correspondem ao número de núcleos do processador. O speedup mais ideal foi mostrado com apenas duas threads. Então, o resultado sugere que a otimização do da operação de movimentação de elementos antes da paralelizacao pode melhorar a eficiência do algoritmo.
 
