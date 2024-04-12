@@ -1,3 +1,8 @@
+""" melhorar a quebra de linha 
+    inserir mais informações sobre o hardware utilizado, assim como o sistema operacional
+    desenvolver sobre a metodologia utilizada para que chegasse nos resultados da avaliação experimental
+    inserir mais informações acerca do item 3, sobre o ambiente utilizado """
+
 #ITEM 1 - Quicksort paralelo
 Os algoritmos usados nesse  trabalho foram Ordenação  por  Amostragem  e
 Quicksort  Paralelo.  Ambos são métodos de ordenação  baseado  na 
