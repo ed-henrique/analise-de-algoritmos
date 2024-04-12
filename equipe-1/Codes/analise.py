@@ -1,10 +1,8 @@
 import logging
 import shlex
 import subprocess
-import time
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
 import logging
 from tqdm import tqdm
 
@@ -184,7 +182,7 @@ categories2 = [['a-1000.txt', 'a-5000.txt', 'a-10000.txt'],
               ['o-1000.txt', 'o-5000.txt', 'o-10000.txt']
               ]
 
-analise = Analise(['quickSort', 'mergeSort', 'shellSort'], '../inputs/') #cria o objeto analise com os algoritimos e o diretorio das entradas
+analise = Analise(['mergeSort', 'shellSort'], '../inputs/') #cria o objeto analise com os algoritimos e o diretorio das entradas
 analise.run(categories)  #roda a analise passando as categorias de cada input
 analise.save_data() #salva os dados em csv
 analise.plot_data("MacOs", "M1", 8,  ) #plota os dados passando os parametros do sistema
