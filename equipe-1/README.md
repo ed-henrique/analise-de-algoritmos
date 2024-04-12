@@ -29,6 +29,8 @@ with open('D.txt', 'w') as file:
 
 #### Algoritimo
 
+<!--Poderiam acrescentar breves explicação sobre cada algoritmo apresentado no artigo, destacando seus pontos principais e como eles se comparam-->
+
 *QuickSort Pararelo:* 
 É uma versão paralela do algoritmo de ordenação QuickSort. Ele divide o problema de ordenação em subproblemas menores que podem ser ordenados em paralelo, utilizando as capacidades de processamento multi-core de computadores modernos.
 
@@ -36,12 +38,17 @@ with open('D.txt', 'w') as file:
 É um algoritmo de ordenação que utiliza uma técnica de amostragem para estimar a distribuição dos elementos em um conjunto de dados. A partir dessa estimativa, o algoritmo divide o conjunto de dados em subconjuntos menores que podem ser ordenados de forma mais eficiente.
 
 #### Tecnica de Pararelismo
+
+<!--Descrev com mais detalhes, como o modelo MapReduce foi utilizado para processar os conjuntos de dados de forma eficiente e paralela em clusters de computadores.-->
+
 Para isso foi usado o Mapreduce que é um modelo de programação e uma estrutura de software criada para processar grandes conjuntos de dados (big data) de forma eficiente e paralela em clusters de computadores. Ele simplifica o processamento distribuído dividindo a tarefa em duas fases distintas
 
 #### Linguaguem de Programação
 Usando a linguagem JAVA
 
 #### Avaliação experimental
+
+<!--Considerem adicionar gráficos ou tabelas para visualizar melhor os resultados dos experimentos, como os tempos de execução em função do número de partições.-->
 
 1) *Estabilidade do Algoritmo:* 
 As dezexecuções do Quicksort Paralelo produzem um tempo
@@ -69,7 +76,7 @@ entrada de 108
 chaves em distribuição uniforme. O gráfico relata o tempo médio de ordenação em
 função do número de partições. Observa-se um aumento
 significativo no tempo de execução do Quicksort Paralelo
-à medida que o número de partições aumenta. 
+à medida que o número de partições aumenta.
 
 |~200 para 2 partições | ~410 para 4 partições| ~580 para 6 partições| ~700 para 8 partições|
 
@@ -123,12 +130,19 @@ computadores.
 
 
 ### Tecnica de Pararelismo
-Paralelização de uma implementação in-place do algoritmo mergeSort utilizando threads 
+
+<!--Seria interessante adicionar AQUI mais detalhes sobre como exatamente as threads são utilizadas para melhorar o desempenho do algoritmo e como isso se relacion a com a execução em paralelo do processo de ordenação-->
+
+Paralelização de uma implementação in-place do algoritmo mergeSort utilizando threads
 
 ### Linguaguem de Programação
 Usando a linguagem JAVA
 
 ### Avaliação experimental
+
+
+<!--Considerem adicionar gráficos ou tabelas para visualizar melhor os resultados dos experimentos-->
+<!--Como foi  possível  melhorar  o desempenho  e  a  eficiência  do  algoritmo ?-->
 Observa-se que a redução do tempo de 
 execução foi mais significativa para a maior entrada (10 milhões de elementos – linha
 superior do gráfico).
