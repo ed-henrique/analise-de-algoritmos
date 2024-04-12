@@ -1,27 +1,65 @@
-Equipe: Jasson, Marcos,  Guilherme, Leonardo e João Lucas
+# Projeto de Comparação de Algoritmos de Ordenação
 
-# Gerador de Sequências Numéricas
+Este projeto compara o desempenho de três diferentes algoritmos de ordenação (Merge Sort, Shell Sort e Quick Sort) usando várias sequências e tamanhos de entrada. O objetivo é analisar a eficiência desses algoritmos sob diversas condições e visualizar os resultados em um gráfico comparativo.
 
-Este script Python gera três arquivos de texto, cada um contendo uma sequência de números em ordem ascendente, descendente e aleatória, respectivamente. É uma ferramenta útil para criar conjuntos de dados de teste ou para fins educacionais relacionados ao aprendizado de algoritmos de ordenação e aleatoriedade.
+## Estrutura do Projeto
 
-## Requisitos
+O projeto inclui quatro scripts Python principais:
 
-Para executar este script, você precisará de:
+- `merge_sort_script.py`: Implementa e executa o algoritmo Merge Sort.
+- `shell_sort_script.py`: Implementa e executa o algoritmo Shell Sort.
+- `quick_sort_script.py`: Implementa e executa o algoritmo Quick Sort.
+- `analysis_script.py`: Executa todos os scripts de ordenação, compila os resultados, e gera um gráfico de desempenho.
 
-- Python 3.x
+Além disso, os resultados de cada script de ordenação são salvos em arquivos TXT para cada tipo de sequência (`ascending`, `descending`, `random`) e cada tamanho de entrada especificado.
 
-## Como Executar
+## Pré-requisitos
 
-1. Clone o repositório para sua máquina local ou baixe o arquivo `script.py`.
-2. Abra um terminal ou prompt de comando.
-3. Navegue até o diretório onde o arquivo `generate_numbers.py` foi salvo.
-4. Execute o script usando o comando: `python generate_numbers.py`
-5. Após a execução, três arquivos de texto (`ascending_order.txt`, `descending_order.txt`, `random_order.txt`) serão criados no mesmo diretório do script.
+- Python 3.6 ou superior
+- Matplotlib (para geração de gráficos)
+- Subprocess (usualmente incluído com Python)
 
-## Personalização
+Você pode instalar as dependências necessárias com o seguinte comando:
 
-Você pode personalizar o intervalo dos números gerados modificando o seguinte trecho de código no arquivo `generate_numbers.py`:
+```bash
+pip install matplotlib
+```
 
-```python
-# Gera números com um intervalo de 1.000
-numbers = list(range(1, 10001, 1000))
+## Executando os Scripts
+Clone o Repositório
+
+Primeiro, clone este repositório para sua máquina local usando o seguinte comando:
+
+```bash
+git clone <URL-do-repositório>
+cd <diretório-do-projeto>
+```
+
+### Execute os Scripts de Ordenação
+
+Você pode executar cada script de ordenação individualmente para gerar os arquivos de sequências ordenadas:
+
+```bash
+python merge_sort_script.py
+python shell_sort_script.py
+python quick_sort_script.py
+```
+
+Cada script irá criar arquivos .txt para diferentes tamanhos e tipos de sequências.
+
+### Compile os Resultados e Gere o Gráfico
+
+Após executar os scripts de ordenação, execute o script de análise para compilar os resultados em um arquivo CSV e gerar o gráfico de desempenho:
+
+```bash
+python analysis_script.py
+```
+Isso irá criar um arquivo combined_results.csv com os tempos de execução e um gráfico sorting_performance_comparison.png que mostra o desempenho comparativo.
+
+## Output Esperado
+
+Arquivos TXT: Cada um contendo as sequências ordenadas para cada tipo e tamanho de entrada.
+
+CSV: combined_results.csv contendo os métodos de ordenação, tamanhos de entrada, tipos de sequência, e tempos médios de execução.
+
+Gráfico PNG: sorting_performance_comparison.png mostrando os tempos médios de execução em relação ao tamanho das sequências para cada algoritmo de ordenação.
