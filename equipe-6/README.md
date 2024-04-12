@@ -17,6 +17,16 @@ O script vai gerar os arquivos `o.txt` (ordem ascendente), `d.txt` (ordem descen
 
 <div align="justify">
 
+## Resultados da Comparação entre os Algoritmos
+
+<div align="center">
+
+![Sorting Comparison](./assets/sorting_comparison.png)
+
+</div>
+
+Podemos observar que os algoritmos performam de maneira similar para entradas aleatórias, porém o `quick` claramente se destaca pela sua performance subpar em entradas ascendentes e descendentes. Isso se deve ao fato de que estas entradas representam os piores casos para o algoritmo, resultando em uma complexidade de O(n²). Esse resultado poderia ser amenizado com uma escolha mais sábia do pivô, que no caso do algoritmo acima, foi o último elemento do vetor.
+
 ## Artigos
 
 ### [CUDA-quicksort: an improved GPU-based implementationof quicksort](https://onlinelibrary.wiley.com/doi/epdf/10.1002/cpe.3611)
