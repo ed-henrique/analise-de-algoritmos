@@ -1,8 +1,9 @@
 .vscode/
 .idea/
 
-./equipe-1/outputs
-./equipe-1/analise.log
-./equipe-1/mergeSort
-./equipe-1/quickSort
-./equipe-1/shellSort
+./equipe-1/.idea
+./equipe-1/Codes/outputs
+./equipe-1/Codes/analise.log
+./equipe-1/Codes/mergeSort
+./equipe-1/Codes/quickSort
+./equipe-1/Code/shellSort
