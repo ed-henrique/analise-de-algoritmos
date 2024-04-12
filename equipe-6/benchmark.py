@@ -50,7 +50,7 @@ def run_code():
 
     file_logger.debug(f"Algoritmo;Entrada;Tempo")
 
-    for input in PATH_FILES_INPUT_LIST[14:]:
+    for input in PATH_FILES_INPUT_LIST[-1:]:
 
         if not os.path.exists(input):
             stdout_logger.error(f"Input file: {input} not found")            
