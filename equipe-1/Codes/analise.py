@@ -119,7 +119,7 @@ class Analise():
 
         # Configurações do gráfico
         plt.figure(figsize=(12, 10))  # Tamanho da figura
-
+    
         # Plot do primeiro gráfico
         plt.subplot(3, 1, 1)  # Posição do primeiro gráfico
         for line in data_A.index:
@@ -183,6 +183,6 @@ categories2 = [['a-1000.txt', 'a-5000.txt', 'a-10000.txt'],
               ]
 
 analise = Analise(['mergeSort', 'shellSort'], '../inputs/') #cria o objeto analise com os algoritimos e o diretorio das entradas
-analise.run(categories)  #roda a analise passando as categorias de cada input
-analise.save_data() #salva os dados em csv
-analise.plot_data("MacOs", "M1", 8,  ) #plota os dados passando os parametros do sistema
+# analise.run(categories)  #roda a analise passando as categorias de cada input
+# analise.save_data() #salva os dados em csv
+analise.plot_data("Ubuntu Server", "Intel(R) Xeon(R) CPU E5620", 8,  ) #plota os dados passando os parametros do sistema
