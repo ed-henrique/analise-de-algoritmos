@@ -1,5 +1,17 @@
-O script gera 3 arquivos conforme pedido: O,D e A, que representam respectivamente os números gerados aleatoriamente, em ordem descrescente e crescente.
+#
+## Arquivos
+AA
+├───algoritmos_ordenacao
+├───graficos
+├───input
+├───logs
+├───plot
+├───plotter
+└───testlogs
+## Execução
 
-Foi utilizada a biblioteca padrão python "random" para gerar números aleatórios.
+Para executar, basta navegar até a pasta raiz ".\\AA" e digitar "py script_run_exp.py". Devem ser gerados arquivos nas pastas logs, testelogs e plots
 
-Para executar, basta executar o script, informar o número de ocorrências que você deseja que sejam geradas, além do número máximo que pode ser gerado em dada ocorrência.
+Após a criação dos arquivos, basta executar o script plotv2.py, navegando até ".\\AA\\plotter" e digitando "py plotv2.py".
+
+Serão gerados 3 plots, que serão exportados em png para a pasta "graficos"
