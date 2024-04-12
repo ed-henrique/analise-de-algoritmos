@@ -58,8 +58,8 @@ Isso irá criar um arquivo combined_results.csv com os tempos de execução e um
 
 ## Output Esperado
 
-Arquivos TXT: Cada um contendo as sequências ordenadas para cada tipo e tamanho de entrada.
+- Arquivos TXT: Cada um contendo as sequências ordenadas para cada tipo e tamanho de entrada.
 
-CSV: combined_results.csv contendo os métodos de ordenação, tamanhos de entrada, tipos de sequência, e tempos médios de execução.
+- CSV: combined_results.csv contendo os métodos de ordenação, tamanhos de entrada, tipos de sequência, e tempos médios de execução.
 
-Gráfico PNG: sorting_performance_comparison.png mostrando os tempos médios de execução em relação ao tamanho das sequências para cada algoritmo de ordenação.
+- Gráfico PNG: sorting_performance_comparison.png mostrando os tempos médios de execução em relação ao tamanho das sequências para cada algoritmo de ordenação.
