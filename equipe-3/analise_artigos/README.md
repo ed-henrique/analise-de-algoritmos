@@ -11,11 +11,12 @@
     - A  programação  é  baseada  em  duas  funções  principais,Map  e  Reduce.  A  função  Map  é  aplicada  aos  dados  deentrada e produz uma lista intermediária de pares <chave,valor>. Todos os valores intermediários associados a umamesma chave são agrupados e enviados à função Reduce,que,  por  sua  vez,  combina  esses  valores  para  formar  umconjunto sintético de resultados
 
 - Linguagem de Programação:
-    - Java   
+    - Java
 
 - Avaliação Experimental:
     - O  tempo  médio  de  execução  do  algoritmo  QuicksortParalelo em cinco máquinas foi cerca de 45% menor que otempo médio obtido em duas máquinas. Para o Ordenaçãopor  Amostragem  o  percentual  reduzido  é  ainda  maior:em  cinco  máquinas  reduz-se  57%  o  tempo  necessáriopara  a  execução  em  duas  máquinas.  Em  todos  os  casoso  coeficiente  de  variação  calculado  para  os  tempos  deexecução  foi  menor  que  0,031,  o  que  indica  tempos  deexecução bastante homogêneos para os dois algoritmos.
     ![alt text](image.png)
+
 
 ### Artigo #1 
 
@@ -30,3 +31,5 @@
 
 - Avalização Experimental:
 ![alt text](image-1.png)
+
+### Acho que poderia transformar essa imagem em algo escrito.
