@@ -1,5 +1,5 @@
 # Script em python Equipe 1
-
+### Equipe: Barbara Zamperete, Lucas Prado, Natália Almada, Rosialdo Vidinho, Venícius Jacob
 ## Execuçao do script randon
 - Windows 
 ```
