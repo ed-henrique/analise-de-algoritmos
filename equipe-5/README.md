@@ -1,4 +1,4 @@
-###Equipe: Felipe Borges ; Gilberto Alexsandro ; Wanderson Morais de Sousa
+Equipe: Felipe Borges ; Gilberto Alexsandro ; Wanderson Morais de Sousa
 
 Funcionamento do script
 Primeiro, escolha quantos numeros vao ser criados.
