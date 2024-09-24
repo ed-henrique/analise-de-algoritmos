@@ -1,6 +1,7 @@
-Equipe: Felipe Borges ; Gilberto Alexsandro ; Wanderson Morais de Sousa
+# Script em C Equipe 1
+### Equipe: Felipe Borges, Gilberto Alexsandro e Wanderson Morais de Sousa
+## Funcionamento do script
 
-Funcionamento do script
 Primeiro, escolha quantos numeros vao ser criados.
 Segundo, escolha qual vai ser o maior numero criado.
 
@@ -31,8 +32,8 @@ ALGORITMO mergesot in-place
 TECNICA DE PARALELISMO 
 O artigo fala sobre a paralelização do algoritmo mergesort utilizando threads em Java. A técnica de paralelismo utilizada consiste em dividir o vetor a ser ordenado em trechos menores e independentes, permitindo que cada thread trabalhe em um trecho específico sem conflitos no acesso aos elementos do vetor. Além disso, o artigo menciona que foram realizados testes com diferentes configurações do vetor de entrada para verificar a eficiência da implementação paralela. 
  
- LINGUAGUEM DE PROGRAMAÇAO JAVA
+LINGUAGUEM DE PROGRAMAÇAO JAVA
  
  
- AVALIAÇÃO EXPREMENTAL
+AVALIAÇÃO EXPREMENTAL
  O artigo descreve uma avaliação experimental da paralelização do algoritmo Mergesort in-place utilizando threads em Java. Nos testes realizados, foram utilizados diferentes tamanhos de vetores e configurações, como elementos repetidos ou únicos, e vetores com elementos dispostos de forma aleatória, ordenada ou invertida. Foram realizadas mil execuções para cada configuração e calculado o tempo médio, sendo que as execuções iniciais correspondentes a 10% do total não foram consideradas no cálculo. Os resultados mostraram que a paralelização apresentou redução significativa do tempo de execução para entradas maiores, chegando a 74%, em relação à versão sequencial. Além disso, o artigo menciona que a equipe pretende investir em otimização do trecho sequencial do algoritmo e realizar comparações com outras implementações paralelas similares em relação ao desempenho e consumo de memória.
