@@ -1,3 +1,7 @@
+Felipe Borges
+Gilberto Alexsandro
+Wanderson Morais de Sousa
+
 Funcionamento do script
 Pimeiro, escolha quantos numeros vao ser criados.
 segundo, escolha qual vai ser o maior numero criado.
