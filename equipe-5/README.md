@@ -1,4 +1,4 @@
-# Script em C Equipe 1
+# Script em C
 ### Equipe: Felipe Borges, Gilberto Alexsandro e Wanderson Morais de Sousa
 ## Funcionamento do script
 
